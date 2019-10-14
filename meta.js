@@ -17,12 +17,34 @@ async function main() {
                 currentAddr = "TV1PncFYCH1Us638uy83rwR2y3icvj8sSF";
                 console.log(currentAddr);
                 getRvFromUnit(1);
+                getAllMyRv();
                 
                 /*setTimeout(function() {}, 2000);
                 setInterval(function() {
                         mainloop();
                 }, 2000);*/
         }
+}
+
+function nFormatter(num) {
+    isNegative = false
+    if (num < 0) {
+        isNegative = true
+    }
+    num = Math.abs(num)
+    if (num >= 1000000000) {
+        formattedNumber = (num / 1000000000).toFixed(1).replace(/\.0$/, '') + 'G';
+    } else if (num >= 1000000) {
+        formattedNumber = (num / 1000000).toFixed(1).replace(/\.0$/, '') + 'M';
+    } else if (num >= 1000) {
+        formattedNumber = (num / 1000).toFixed(1).replace(/\.0$/, '') + 'K';
+    } else {
+        formattedNumber = num;
+    }
+    if (isNegative) {
+        formattedNumber = '-' + formattedNumber
+    }
+    return formattedNumber;
 }
 
 function getRvFromUnit(unit) {
@@ -32,6 +54,17 @@ function getRvFromUnit(unit) {
                 
                 console.log("myrv ", myrv);
                 //document.getElementById("rv" ).textContent = myrv;
+        });
+}
+
+function getAllMyRv() {
+        tycoon.AllmyRv().call().then(result => {
+                console.log("User", result);
+                var all = result.toString();
+
+                var AllmyRv = (all / 2e6);
+                AllmyRv = nFormatter(AllmyRv);
+                console.log(AllmyRv);
         });
 }
 
