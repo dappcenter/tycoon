@@ -17,8 +17,9 @@ window.onload = function() {
                     );
 
                 window.tronWeb = tronWeb;
-                main();
           }
+          
+          main();
 };
 
 async function main() {
