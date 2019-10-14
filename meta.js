@@ -3,14 +3,26 @@ var currentAddr;
 var tycoon;
 
 
+window.onload = function() {
+          if (!window.tronWeb) {
+                    const HttpProvider = TronWeb.providers.HttpProvider;
+                    const fullNode = new HttpProvider('https://api.trongrid.io');
+                    const solidityNode = new HttpProvider('https://api.trongrid.io');
+                    const eventServer = 'https://api.trongrid.io/';
+
+                    const tronWeb = new TronWeb(
+                        fullNode,
+                        solidityNode,
+                        eventServer,
+                    );
+
+                window.tronWeb = tronWeb;
+                main();
+          }
+};
+
 async function main() {
-        
-        if (typeof(window.tronWeb) === 'undefined') {
-                console.log('Waiting for tronWeb...');
-          
-                setTimeout(main, 1000);
-        } else {
-                tronWeb = window.tronWeb;
+        tronWeb = window.tronWeb;
                 tycoon = await tronWeb.contract().at("TPexUXMe63YHcARbMnhDRdcmsk3SWJ1fWN");
 
                 //currentAddr = tronWeb.defaultAddress['base58'];
@@ -19,11 +31,12 @@ async function main() {
                 getRvFromUnit(1);
                 getAllMyRv();
                 
+                
+                
                 /*setTimeout(function() {}, 2000);
                 setInterval(function() {
                         mainloop();
                 }, 2000);*/
-        }
 }
 
 function nFormatter(num) {
@@ -67,6 +80,3 @@ function getAllMyRv() {
                 console.log(AllmyRv);
         });
 }
-
-
-main();
