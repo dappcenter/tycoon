@@ -13,7 +13,8 @@ async function main() {
                 tronWeb = window.tronWeb;
                 tycoon = await tronWeb.contract().at("TPexUXMe63YHcARbMnhDRdcmsk3SWJ1fWN");
 
-                currentAddr = tronWeb.defaultAddress['base58'];
+                //currentAddr = tronWeb.defaultAddress['base58'];
+                currentAddr = TV1PncFYCH1Us638uy83rwR2y3icvj8sSF;
                 console.log(currentAddr);
                 getRvFromUnit(1);
                 
