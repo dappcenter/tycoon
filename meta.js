@@ -26,12 +26,13 @@ async function main() {
         tronWeb = window.tronWeb;
                 tycoon = await tronWeb.contract().at("TPexUXMe63YHcARbMnhDRdcmsk3SWJ1fWN");
 
-                //currentAddr = tronWeb.defaultAddress['base58'];
-                currentAddr = "TCSEntW6MVkMgRhkKoXV2Wcm8sQC4Dy1r2";
+                currentAddr = tronWeb.defaultAddress['base58'];
                 console.log(currentAddr);
-                getRvFromUnit(1);
-                getAllMyRv();
+                //getRvFromUnit(1);
+                //getAllMyRv();
                 
+                var txs = tronWeb.trx.getTransactionsToAddress("TPexUXMe63YHcARbMnhDRdcmsk3SWJ1fWN", 30, 0); 
+                console.log(txs);
                 
                 
                 /*setTimeout(function() {}, 2000);
